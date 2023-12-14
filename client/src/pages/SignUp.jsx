@@ -25,10 +25,11 @@ export default function SignUp() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      // console.log(data);
+      console.log(data);
       if (data.success === false) {
         setLoading(false);
         setError(data.message);
+        console.log(data.message)
         return;
       }
       setLoading(false);
@@ -49,6 +50,7 @@ export default function SignUp() {
           className="border p-3 rounded-lg"
           id="username"
           onChange={handleChange}
+          required={true}
         />
         <input
           type="email"
@@ -56,6 +58,7 @@ export default function SignUp() {
           className="border p-3 rounded-lg"
           id="email"
           onChange={handleChange}
+          required={true}
         />
         <input
           type="password"
@@ -63,6 +66,8 @@ export default function SignUp() {
           className="border p-3 rounded-lg"
           id="password"
           onChange={handleChange}
+          required={true}
+          
         />
         <button disabled={loading} className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
           {loading ? 'Loading...' : 'Sign Up'}
@@ -74,7 +79,7 @@ export default function SignUp() {
           <span className="text-blue-700">Sign In </span>
         </Link>
       </div>
-      {error && <p className="text-red-500 mt-5" > {error} </p>}
+      {error && <p className="text-red-500 mt-5" >{error}</p>}
     </div>
   );
 }
